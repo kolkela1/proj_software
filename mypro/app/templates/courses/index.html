@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block title %}Courses{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>Available Courses</h2>
+    {% if g.user['role'] == 'admin' %}
+    <a href="{{ url_for('courses.create') }}" class="btn btn-success">Create New Course</a>
+    {% endif %}
+</div>
+
+<div class="row">
+    {% for course in courses %}
+    <div class="col-md-4 mb-4">
+        <div class="card h-100 shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title">{{ course['name'] }}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Price: ${{ course['price'] }}</h6>
+                <p class="card-text">{{ course['description'] }}</p>
+                <p class="text-muted"><small>Teacher: {{ course['teacher_name'] if course['teacher_name'] else 'Not
+                        Assigned' }}</small></p>
+            </div>
+            <div class="card-footer bg-white border-top-0">
+                <div class="d-grid">
+                    {% if g.user['role'] == 'student' %}
+                    {% if course['id'] in enrolled_ids %}
+                    <a href="{{ url_for('courses.view', id=course['id']) }}" class="btn btn-primary">Go to Course</a>
+                    {% else %}
+                    <a href="{{ url_for('courses.view', id=course['id']) }}" class="btn btn-outline-primary">View &
+                        Enroll</a>
+                    {% endif %}
+                    {% else %}
+                    <a href="{{ url_for('courses.view', id=course['id']) }}" class="btn btn-info">View Details</a>
+                    {% if g.user['role'] == 'admin' %}
+                    <a href="{{ url_for('courses.update', id=course['id']) }}" class="btn btn-secondary mt-2">Edit</a>
+                    {% endif %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <div class="col-12 text-center text-muted">
+        <p>No courses available at the moment.</p>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

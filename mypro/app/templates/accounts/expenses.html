@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %}المصروفات{% endblock %}
+
+{% block content %}
+<div class="row mb-3">
+    <div class="col">
+        <h2>سجل المصروفات</h2>
+    </div>
+    <div class="col text-end">
+        <a href="{{ url_for('accounts.create_expense') }}" class="btn btn-danger">إضافة مصروف</a>
+        <a href="{{ url_for('accounts.index') }}" class="btn btn-secondary">عودة</a>
+    </div>
+</div>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>العنوان</th>
+            <th>المبلغ</th>
+            <th>التاريخ</th>
+            <th>ملاحظات</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for expense in expenses %}
+        <tr>
+            <td>{{ expense['title'] }}</td>
+            <td>{{ expense['amount'] }}</td>
+            <td>{{ expense['expense_date'] }}</td>
+            <td>{{ expense['notes'] }}</td>
+        </tr>
+        {% else %}
+        <tr>
+            <td colspan="4" class="text-center">لا يوجد بيانات.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

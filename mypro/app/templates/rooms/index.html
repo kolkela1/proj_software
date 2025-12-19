@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}القاعات{% endblock %}
+
+{% block content %}
+<div class="row mb-3">
+    <div class="col">
+        <h2>القاعات الدراسية</h2>
+    </div>
+    <div class="col text-end">
+        <a href="{{ url_for('rooms.create') }}" class="btn btn-success">إضافة قاعة</a>
+    </div>
+</div>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>اسم القاعة</th>
+            <th>السعة</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for room in rooms %}
+        <tr>
+            <td>{{ room['room_name'] }}</td>
+            <td>{{ room['capacity'] }}</td>
+        </tr>
+        {% else %}
+        <tr>
+            <td colspan="2" class="text-center">لا يوجد قاعات.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

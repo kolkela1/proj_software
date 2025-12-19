@@ -1,0 +1,48 @@
+{% extends 'public_base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section text-center">
+    <div class="container">
+        <h1 class="display-3 fw-bold mb-4">Master Your Future with Expert Tutoring</h1>
+        <p class="lead mb-5">Join our community of learners and achieve your academic goals with personalized support
+            and proven methods.</p>
+        <a href="{{ url_for('public.courses') }}" class="btn btn-light btn-cta text-primary fw-bold me-3">Enroll Now</a>
+        <a href="{{ url_for('auth.register') }}" class="btn btn-outline-light btn-cta">Sign Up</a>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section class="py-5">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 p-4">
+                    <div class="card-body">
+                        <h3 class="card-title text-primary mb-3">Expert Teachers</h3>
+                        <p>Learn from qualified professionals dedicated to your success.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 p-4">
+                    <div class="card-body">
+                        <h3 class="card-title text-primary mb-3">Flexible Scheduling</h3>
+                        <p>Choose class times that fit your busy lifestyle.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 p-4">
+                    <div class="card-body">
+                        <h3 class="card-title text-primary mb-3">Track Progress</h3>
+                        <p>Monitor your grades and attendance in real-time.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block title %}التقارير{% endblock %}
+
+{% block content %}
+<h2 class="mb-4">التقارير والإحصائيات</h2>
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="card text-center mb-3">
+            <div class="card-header">إجمالي الطلاب</div>
+            <div class="card-body">
+                <h3>{{ total_students }}</h3>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card text-center mb-3">
+            <div class="card-header">إجمالي المعلمين</div>
+            <div class="card-body">
+                <h3>{{ total_teachers }}</h3>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="card text-white bg-success mb-3">
+            <div class="card-header">إجمالي الإيرادات</div>
+            <div class="card-body">
+                <h3>{{ total_income }}</h3>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card text-white bg-danger mb-3">
+            <div class="card-header">إجمالي المصروفات</div>
+            <div class="card-body">
+                <h3>{{ total_expenses }}</h3>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card text-white bg-primary mb-3">
+            <div class="card-header">صافي الربح</div>
+            <div class="card-body">
+                <h3>{{ net_profit }}</h3>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

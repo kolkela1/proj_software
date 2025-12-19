@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}أولياء الأمور{% endblock %}
+
+{% block content %}
+<div class="row mb-3">
+    <div class="col">
+        <h2>أولياء الأمور</h2>
+    </div>
+    <div class="col text-end">
+        <a href="{{ url_for('parents.create') }}" class="btn btn-success">إضافة ولي أمر</a>
+    </div>
+</div>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>الاسم</th>
+            <th>اسم المستخدم</th>
+            <th>الياتف</th>
+            <th>البريد الإلكتروني</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for parent in parents %}
+        <tr>
+            <td>{{ parent['name'] }}</td>
+            <td>{{ parent['username'] }}</td>
+            <td>{{ parent['phone'] }}</td>
+            <td>{{ parent['email'] }}</td>
+        </tr>
+        {% else %}
+        <tr>
+            <td colspan="4" class="text-center">لا يوجد بيانات.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}تسجيل دفعة{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">تسجيل دفعة جديدة</div>
+            <div class="card-body">
+                <form method="post">
+                    <div class="mb-3">
+                        <label class="form-label">الطالب</label>
+                        <select name="student_id" class="form-select">
+                            {% for s in students %}
+                            <option value="{{ s['id'] }}">{{ s['name'] }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">عن شهر</label>
+                        <select name="month_id" class="form-select">
+                            {% for m in months %}
+                            <option value="{{ m['id'] }}">{{ m['month_number'] }} / {{ m['year'] }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">المبلغ</label>
+                        <input type="number" step="0.01" name="amount" class="form-control" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">حفظ</button>
+                    <a href="{{ url_for('accounts.payments_index') }}" class="btn btn-secondary">إلغاء</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

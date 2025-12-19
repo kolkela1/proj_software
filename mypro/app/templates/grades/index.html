@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %}الدرجات / الامتحانات{% endblock %}
+
+{% block content %}
+<div class="row mb-3">
+    <div class="col">
+        <h2>درجات الامتحانات</h2>
+    </div>
+    <div class="col text-end">
+        <a href="{{ url_for('grades.create') }}" class="btn btn-success">إضافة درجة</a>
+    </div>
+</div>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>الطالب</th>
+            <th>الشهر</th>
+            <th>الدرجة</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for exam in exams %}
+        <tr>
+            <td>{{ exam['student_name'] }}</td>
+            <td>{{ exam['month_number'] }} / {{ exam['year'] }}</td>
+            <td>{{ exam['score'] }}</td>
+        </tr>
+        {% else %}
+        <tr>
+            <td colspan="3" class="text-center">لا يوجد بيانات.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

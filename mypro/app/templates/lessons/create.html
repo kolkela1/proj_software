@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %}Add Lesson{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card shadow">
+            <div class="card-header bg-dark text-white">
+                <h4>Add Lesson to {{ course['name'] }}</h4>
+            </div>
+            <div class="card-body">
+                <form method="post" enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <label for="title" class="form-label">Lesson Title</label>
+                        <input type="text" name="title" id="title" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="content" class="form-label">Lesson Content / Description</label>
+                        <textarea name="content" id="content" rows="4" class="form-control"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="video_url" class="form-label">Video URL (Optional)</label>
+                        <input type="url" name="video_url" id="video_url" class="form-control"
+                            placeholder="https://youtube.com/...">
+                    </div>
+                    <div class="mb-3">
+                        <label for="file" class="form-label">Attach File (PDF, Video, etc.)</label>
+                        <input type="file" name="file" id="file" class="form-control">
+                    </div>
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-primary">Upload Lesson</button>
+                        <a href="{{ url_for('courses.view', id=course['id']) }}" class="btn btn-secondary">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

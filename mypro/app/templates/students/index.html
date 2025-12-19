@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block title %}الطلاب{% endblock %}
+
+{% block content %}
+<div class="row mb-3">
+    <div class="col">
+        <h2>قائمة الطلاب</h2>
+    </div>
+    <div class="col text-end">
+        <a href="{{ url_for('students.create') }}" class="btn btn-success">إضافة طالب</a>
+    </div>
+</div>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>الاسم</th>
+            <th>الجنس</th>
+            <th>الهاتف</th>
+            <th>المجموعة</th>
+            <th>ولي الأمر</th>
+            <th>الحالة</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for student in students %}
+        <tr>
+            <td>{{ student['name'] }}</td>
+            <td>{{ 'ذكر' if student['gender'] == 'male' else 'أنثى' }}</td>
+            <td>{{ student['phone'] }}</td>
+            <td>{{ student['class_name'] }}</td>
+            <td>{{ student['parent_name'] }}</td>
+            <td>
+                {% if student['active'] %}
+                <span class="badge bg-success">نشط</span>
+                {% else %}
+                <span class="badge bg-danger">غير نشط</span>
+                {% endif %}
+            </td>
+        </tr>
+        {% else %}
+        <tr>
+            <td colspan="6" class="text-center">لا يوجد طلاب.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}إضافة قاعة{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">إضافة قاعة جديدة</div>
+            <div class="card-body">
+                <form method="post">
+                    <div class="mb-3">
+                        <label class="form-label">اسم القاعة</label>
+                        <input type="text" name="room_name" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">السعة</label>
+                        <input type="number" name="capacity" class="form-control">
+                    </div>
+                    <button type="submit" class="btn btn-primary">حفظ</button>
+                    <a href="{{ url_for('rooms.index') }}" class="btn btn-secondary">إلغاء</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

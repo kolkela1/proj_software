@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}الحسابات المالية{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-6">
+        <div class="card text-center mb-4">
+            <div class="card-body">
+                <h3 class="card-title">المدفوعات (الإيرادات)</h3>
+                <a href="{{ url_for('accounts.payments_index') }}" class="btn btn-primary">عرض المدفوعات</a>
+                <a href="{{ url_for('accounts.create_payment') }}" class="btn btn-outline-primary">تسجيل دفعة</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card text-center mb-4">
+            <div class="card-body">
+                <h3 class="card-title">المصروفات</h3>
+                <a href="{{ url_for('accounts.expenses_index') }}" class="btn btn-danger">عرض المصروفات</a>
+                <a href="{{ url_for('accounts.create_expense') }}" class="btn btn-outline-danger">تسجيل مصروف</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

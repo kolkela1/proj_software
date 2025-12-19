@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block title %}الجدول الدراسي{% endblock %}
+
+{% block content %}
+<div class="row mb-3">
+    <div class="col">
+        <h2>الجدول الدراسي</h2>
+    </div>
+    <div class="col text-end">
+        <a href="{{ url_for('lessons.create') }}" class="btn btn-success">إضافة حصة</a>
+    </div>
+</div>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>التاريخ</th>
+            <th>الوقت</th>
+            <th>المادة / المجموعة</th>
+            <th>المعلم</th>
+            <th>القاعة</th>
+            <th>الإجراءات</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for lesson in lessons %}
+        <tr>
+            <td>{{ lesson['lesson_date'] }}</td>
+            <td>{{ lesson['start_time'] }} - {{ lesson['end_time'] }}</td>
+            <td>{{ lesson['class_name'] }}</td>
+            <td>{{ lesson['teacher_name'] }}</td>
+            <td>{{ lesson['room_name'] }}</td>
+            <td>
+                <a href="{{ url_for('attendance.lesson_attendance', lesson_id=lesson['id']) }}"
+                    class="btn btn-sm btn-info">الغياب</a>
+            </td>
+        </tr>
+        {% else %}
+        <tr>
+            <td colspan="6" class="text-center">لا يوجد حصص مجدولة.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block title %}إضافة طالب{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">إضافة طالب جديد</div>
+            <div class="card-body">
+                <form method="post">
+                    <div class="mb-3">
+                        <label class="form-label">اسم الطالب</label>
+                        <input type="text" name="name" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">الجنس</label>
+                        <select name="gender" class="form-select">
+                            <option value="male">ذكر</option>
+                            <option value="female">أنثى</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">هاتف الطالب</label>
+                        <input type="text" name="phone" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">ولي الأمر</label>
+                        <select name="parent_id" class="form-select">
+                            {% for parent in parents %}
+                            <option value="{{ parent['id'] }}">{{ parent['name'] }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">المجموعة / الصف</label>
+                        <select name="class_id" class="form-select">
+                            {% for class in classes %}
+                            <option value="{{ class['id'] }}">{{ class['class_name'] }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">حفظ</button>
+                    <a href="{{ url_for('students.index') }}" class="btn btn-secondary">إلغاء</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

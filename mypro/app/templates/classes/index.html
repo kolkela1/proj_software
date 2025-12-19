@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %}المواد / الحصص{% endblock %}
+
+{% block content %}
+<div class="row mb-3">
+    <div class="col">
+        <h2>المجموعات الدراسية (Classes)</h2>
+    </div>
+    <div class="col text-end">
+        <a href="{{ url_for('classes.create') }}" class="btn btn-success">إضافة مجموعة</a>
+    </div>
+</div>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>اسم المجموعة</th>
+            <th>المستوى</th>
+            <th>السعر الشهري</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for class in classes %}
+        <tr>
+            <td>{{ class['class_name'] }}</td>
+            <td>{{ class['level'] }}</td>
+            <td>{{ class['monthly_price'] }}</td>
+        </tr>
+        {% else %}
+        <tr>
+            <td colspan="3" class="text-center">لا يوجد مجموعات.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
